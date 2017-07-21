@@ -1,0 +1,152 @@
+---
+title: "Demographic Clustering"
+author: "Robin Burke"
+date: "1/8/2017"
+output: html_document
+params:
+  username: "rburke"
+  password: ""
+---
+
+This file computes a clustering of the library branches based on principal components.
+
+```{r}
+library(knitr)
+setwd("/home/rburke/oboc/src/rcr-analysis/src/demographic")
+read_chunk("cluster.R")
+```
+
+### Project constants
+
+```{r C1}
+```
+
+### Load libraries
+
+```{r C2}
+```
+
+### Loading the principal components data
+
+```{r C3}
+```
+
+### Drop unused rows and columns
+Remove non-demographic columns. Remove regional libraries as their demographics are just aggregations of the others.
+Create two data frames with 16 and 8 components, respectively.
+
+```{r C4}
+```
+
+
+## Clustering computation
+
+### A function to try clusterins
+Using PAM - Partitioning Around Medoids.
+
+```{r C5}
+```
+
+### k=3, 16 components
+
+
+```{r C6}
+```
+
+### k=4
+
+```{r C7}
+```
+
+### k=5
+
+```{r C8}
+```
+
+### k=6
+
+```{r C9}
+```
+
+### k=7
+
+```{r C10}
+```
+
+The silhouette value peaks at k=5. Now trying with a smaller number of PCs. Perhaps less noise.
+
+### k=4, 8 components
+
+
+```{r C11}
+```
+
+### k=5
+
+```{r C12}
+```
+
+### k=6
+
+```{r C13}
+```
+
+### Choosing k = 5, with PC = 8
+Adding back in the regional libraries as cluster 6.
+
+```{r C14}
+```
+
+### Saving
+
+```{r C15}
+```
+
+### Examining the medoids
+Note that the transform of PC2. This is the same transformation applied in the 
+multi-level model. High PC^2 value reflects larger number of black and / or Latinx residents. 
+
+
+```{r C16}
+```
+
+### Plot of component weight in each cluster
+
+```{r C17}
+```
+
+Cluster 1 is diverse with more renters, more folks close to work or unemployed. 
+
+Cluster 2 is more white with more homeowners, public transit users.
+
+Cluster 3 is poorer and more Latinx residents, but homeowners.
+
+Cluster 4 is similar to cluster 3, but with African-American residents, slightly greater property values, possibly because of rental units.
+
+Cluster 5 is affluent neighborhoods, mostly white residents. 
+
+Note also that these are mediods -- particular branch areas that are representative of their clusters. A better visualization would be to show the distribution of each component in the clusters. See cluster-viz.Rmd
+
+## Updating database
+
+### Set up
+```{r C18}
+```
+
+### Connect to database
+```{r C19}
+```
+
+### Write cluster table
+```{r C20}
+```
+
+### Update branch table
+```{r C21}
+```
+
+### Clean up
+```{r C22}
+```
+
+

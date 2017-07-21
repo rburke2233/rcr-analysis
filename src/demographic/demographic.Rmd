@@ -1,0 +1,51 @@
+---
+title: "Demographic Data"
+author: "Robin Burke"
+date: "1/8/2017"
+output: html_document
+---
+
+
+Load the code from the R file
+```{r}
+library(knitr)
+setwd("/home/rburke/oboc/src/rcr-analysis/src/demographic")
+read_chunk("demographic.R")
+```
+
+Load project constants
+
+```{r C1}
+```
+
+```{r C2}
+```
+
+Create a new column for the percentage of the population that is registered to vote.
+
+```{r C3}
+```
+
+Drop the columns that we do not use. These are:
+
+- The monthly circulation columns. It might be possible to integrate these into time series analysis.
+- The monthly visitor columns.
+- All columns that are not normalized by population or tract size. This is necessary because the polygons are very different in population. We can only use the percentage-based columns.
+
+```{r C4}
+```
+
+Drop the rows that we do not use. These are:
+
+- The 'bookkeeping' branches such as the Bookmobiles.
+- The main and regional libraries as represented by their local areas.
+
+The list is stored in the BRANCHES_IGNORABLE variable.
+
+```{r C5}
+```
+
+Save the file in branch-data-reduced-yyyymmdd.csv
+
+```{r C6}
+```

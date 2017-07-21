@@ -1,0 +1,167 @@
+---
+title: "Principal Components"
+author: "Robin Burke"
+date: "1/8/2017"
+output: html_document
+---
+
+Creates a principal components representation of the demographic data.
+
+Load the code from the R file
+
+```{r}
+library(knitr)
+setwd("/home/rburke/oboc/src/rcr-analysis/src/demographic")
+read_chunk("components.R")
+```
+
+### Load project constants
+
+```{r C1}
+```
+
+### Load libraries
+
+```{r C2}
+```
+
+### Load demographic data
+
+```{r C3}
+```
+
+### Extract demographic features
+
+Skip the library features, such as circulation and visitors
+
+```{r C4}
+```
+
+### Remove features with high correlations
+
+```{r C5}
+```
+
+### Remove columns with low incidence
+
+Less than 1% of population
+
+```{r C6}
+```
+
+### Compute principal components
+
+```{r C7}
+```
+
+### Component heat map
+
+This function display a one-column heat map of one of the principal components
+showing the contribution of each demograpic feature. The threshold removes
+dimensions with a smaller contribution.
+
+```{r}
+componentMap <- function(comp, thresh)
+{
+  overThresh <- which(abs(comp)>thresh)
+  comp.filtered <- comp[overThresh]
+  comp.filtered <- comp.filtered[order(comp.filtered, decreasing=FALSE)]
+  
+  df <- data.frame(x=c("Component"),
+                   y=factor(names(comp.filtered), levels=names(comp.filtered)),
+                   value=comp.filtered)
+
+  p <- ggplot(df, aes(x=x, y=y, fill=value))
+  p <- p + geom_tile()
+  p <- p + labs(x="",y="")
+  p <- p + scale_x_discrete(expand=c(0,0))
+  p <- p + scale_fill_gradientn(name="",
+                      colours=colorRampPalette(c('blue', 'white', 'red'))(12))
+  print(p)
+}
+```
+
+### Principal component 1
+
+```{r}
+componentMap(features.components$rotation[,1], 0.1)
+```
+
+Note the strong (positive) contribution for:
+
+- Unemployed (PCT16Unemp)
+
+Note the strong (negative) contribution for:
+
+- Median property value (MedPV)
+- White residents (PCTWhite)
+- Private school attendance (PCT3PvtSch)
+
+This axis has to do with affluence.
+
+```{r}
+componentMap(features.components$rotation[,2], 0.1)
+```
+
+Note the strong (positive) contribution for:
+
+- Black residents (PCTBlack)
+- Workers in education (PCTioEdu)
+
+Note the strong (negative) contribution for:
+
+- Male residents (PCTMale)
+- Hispanic residents (PCTHispLat)
+- Construction workers (PCTioCnstr)
+
+This axis corresponds to the division between Hispanic and Black areas.
+
+```{r}
+componentMap(features.components$rotation[,3], 0.1)
+```
+
+Note the strong (positive) contribution for:
+
+- Owner-occupied housing (PCTHUOocc)
+- Percent about poverty level (PCT_APL)
+- Residents between 35-64 (PCTAg35_64)
+
+Note the strong (negative) contribution for:
+
+- Percent never married (PCT15Nmary)
+
+This axis corresponds to more established households, older home-owning residents.
+
+```{r}
+componentMap(features.components$rotation[,4], 0.1)
+```
+
+Note the strong (positive) contribution for:
+
+- Time to work less than 30m (PCTtLT10m, PCTtl10_29m)
+- Walk to work (PCTmtwwalk)
+
+Note the strong (negative) contribution for:
+
+- Longer commute time (PCTt30_59m)
+- Public transport and El usage (PCTmtwEL, PCTmtwpubT)
+
+This axis corresponds to commuters vs people who live near where they work.
+
+### Create a data frame with the transformed features
+
+We keep the first 16 principal components
+
+```{r C8}
+```
+
+### Save the data
+
+```{r C9}
+```
+
+### Save the principal components computation
+
+```{r C10}
+```
+
