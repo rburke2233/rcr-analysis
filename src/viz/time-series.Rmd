@@ -1,0 +1,67 @@
+---
+title: "Time Series Plots"
+author: "Robin Burke"
+date: "7/23/2017"
+output: html_document
+params:
+  username: "oboc_read"
+  password: ""
+---
+
+This file displays time series visualizations of circulation
+
+```{r}
+library(knitr)
+setwd("/home/rburke/oboc/src/rcr-analysis/src/viz")
+read_chunk("time-series.R")
+```
+
+### Project constants
+
+```{r C1}
+```
+
+### Load libraries
+
+```{r C2, warning=FALSE, message=FALSE}
+```
+
+### Database connection
+
+```{r C3}
+```
+
+### Database query
+
+```{r C4}
+```
+
+### Daily circulation
+
+```{r C5}
+```
+
+### Daily circulation smoothed
+
+```{r C6, fig.width=10}
+```
+
+A couple of points.
+
+- Our Augie March data looks like it is cut off. I think this is because there are days with no check-outs in the whole system.
+- Adding the correct announcement days changes the relation between WS / BT and the other books. The peaks correspond to the fall programming, but the ramp up commences with the announcement.
+
+### Checkout density
+
+```{r C7}
+```
+
+### Build weekly aggregation
+
+```{r C8}
+```
+
+### Weekly circulation
+
+```{r C9, fig.width=10}
+```

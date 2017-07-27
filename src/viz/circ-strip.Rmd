@@ -1,0 +1,74 @@
+---
+title: "Circulation Strip Plot"
+author: "Robin Burke"
+date: "7/27/2017"
+output: html_document
+params: 
+  username: "oboc_read"
+  password: ""
+---
+
+This file displays a strip plot visualization combining circulation and cluster information.
+
+```{r}
+library(knitr)
+setwd("/home/rburke/oboc/src/rcr-analysis/src/viz")
+read_chunk("circ-strip.R")
+```
+
+### Project constants
+
+```{r C1}
+```
+
+### Load libraries
+
+```{r C2, warning=FALSE, message=FALSE}
+```
+
+### Loading the cluster table
+
+```{r C3}
+```
+
+### Load the total circulation table
+
+```{r C4a}
+```
+
+```{r C4b}
+```
+
+### Join circulation and cluster tables
+
+```{r C5}
+```
+
+### Strip plot checkouts vs book
+
+```{r C6, fig.width=10}
+```
+
+### Load visitor count table
+
+```{r C7a}
+```
+
+Query
+```{r C7b}
+```
+
+Join
+```{r C7c}
+```
+
+### Join with prior results
+
+```{r C8}
+```
+
+### Strip plot normalized by visitor count
+OBOC checkouts per 1000 visitors
+
+```{r C9, fig.width=10}
+```

@@ -1,0 +1,102 @@
+---
+title: "Cluster Visuations"
+author: "Robin Burke"
+date: "1/8/2017"
+output: html_document
+params:
+  username: "oboc_read"
+  password: ""
+---
+
+This file displays several visualizations of the principal components clustering of the library branches.
+
+```{r}
+library(knitr)
+setwd("/home/rburke/oboc/src/rcr-analysis/src/viz/")
+read_chunk("cluster-viz.R")
+```
+
+### Project constants
+
+```{r C1}
+```
+
+### Load libraries
+
+```{r C2}
+```
+
+### Loading the principal components data
+
+```{r C3}
+```
+
+### Load the cluster table
+
+```{r C4}
+```
+
+### Load the library locations for the map
+
+```{r C5}
+```
+
+### Load the shape files for the map
+
+```{r C6}
+```
+
+### Associate clusters with locations
+
+```{r C7}
+```
+
+### Convert shape files 
+
+```{r C8}
+```
+
+### Branch map, colored by cluster
+
+```{r C9}
+```
+
+### Data frame for multi-dimensional scaling
+
+```{r C10}
+```
+
+### Compute distances
+
+```{r C11}
+```
+
+### Plot 2-D projection
+
+```{r C12}
+```
+
+### Compute mean component value for each cluster
+Contrast with medoids from cluster.Rmd
+
+```{r C13}
+```
+
+### Plot the weights for each cluster
+
+```{r C14}
+```
+
+Similar results to the medoids.
+
+Cluster 1 is poorer, but mostly non-diverse with more renters, more folks close to work or unemployed. 
+
+Cluster 2 is wealthier with more housing mix, public transit users.
+
+Cluster 3 is poorer and more Latinx residents, but homeowners.
+
+Cluster 4 is similar to cluster 3, but with slightly lower property values, possibly because of rental units, larger black population.
+
+Cluster 5 is affluent neighborhoods, mostly white residents. 
+
+

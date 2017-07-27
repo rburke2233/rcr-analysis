@@ -109,7 +109,6 @@ print (p)
 
 # ---- C18 ----
 library(RMySQL)
-library(getPass)
 
 # ---- C19 ----
 con <- dbConnect(MySQL(),
